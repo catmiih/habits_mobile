@@ -1,4 +1,5 @@
 import React from 'react';
+import './src/lib/dayjs';
 
 import { StatusBar} from 'react-native';
 import { 
@@ -11,7 +12,7 @@ import {
 
 /* Components */
 import { Loading } from './src/components/loading';
-import { Home } from './src/screens/home';
+import { Routes } from './src/routes';
 
 export default function App() {
 
@@ -30,7 +31,7 @@ export default function App() {
 
   return (
     <>
-      <Home />
+      <Routes />
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent/>
     </>
   );
