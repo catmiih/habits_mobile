@@ -38,7 +38,7 @@ export function Home() {
             setSummary(response.data)
 
         } catch (error) {
-            Alert.alert('Ops!', 'Não foi possível carregar sua aplicação. Erro: '+error)
+            Alert.alert('Ops!', 'Não foi possível carregar sua aplicação. Erro: ' + error)
             console.log(error)
 
         } finally {
@@ -50,7 +50,7 @@ export function Home() {
         fetchData();
     }, []);
 
-    if (!loading) {
+    if (loading) {
         return (
             <Loading />
         )
@@ -77,6 +77,7 @@ export function Home() {
             <ScrollView showsVerticalScrollIndicator={false}
                 contentContainerStyle={{ paddingBottom: 100 }}>
                 {
+                    summary && (
                     <View className="flex-row flex-wrap">
                         {
                             datesFromYearStart.map(date => {
@@ -88,6 +89,9 @@ export function Home() {
                                 return (
                                     <HabitDay
                                         key={date.toISOString()}
+                                        date={date}
+                                        amountOfHabits={dayWithHabits?.amount}
+                                        amountCompleted={dayWithHabits?.completed}
                                         onPress={() => navigate('habit', { date: date.toISOString() })}
                                     />
                                 )
@@ -106,6 +110,7 @@ export function Home() {
                                 ))
                         }
                     </View>
+                    )
                 }
             </ScrollView>
         </View>
